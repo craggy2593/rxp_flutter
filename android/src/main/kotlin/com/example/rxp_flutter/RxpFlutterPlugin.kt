@@ -54,17 +54,13 @@ class RxpFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware, Plugin
 
                 // validate
                 if (data == null
-                        || data.hppURL.isEmpty()
-                        || data.hppRequestConsumerURL.isEmpty()
-                        || data.hppRequestProducerURL.isEmpty()) {
+                        || data.hppURL.isEmpty()) {
                     result.success(mutableMapOf(RESULT_FIELD_SUCCESS to false, RESULT_FIELD_RESULT to "No or invalid configuration provided", RESULT_FIELD_CODE to 9999))
                     return
                 }
 
                 val intent = Intent(context, PaymentActivity::class.java)
                 val bundle = Bundle()
-                bundle.putString(HPPManager.HPPREQUEST_PRODUCER_URL, data.hppRequestProducerURL)
-                bundle.putString(HPPManager.HPPRESPONSE_CONSUMER_URL, data.hppRequestConsumerURL)
                 bundle.putString(HPPManager.HPPURL, data.hppURL)
                 data.merchantId?.let { bundle.putString(HPPManager.MERCHANT_ID, it) }
                 data.amount?.let { bundle.putString(HPPManager.AMOUNT, it.toString()) }
@@ -123,9 +119,7 @@ class RxpFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware, Plugin
     }
 }
 
-data class PayloadData(@SerializedName("HPPRequestProducerURL") val hppRequestProducerURL: String,
-                       @SerializedName("HPPResponseConsumerURL") val hppRequestConsumerURL: String,
-                       @SerializedName("HPPURL") val hppURL: String,
+data class PayloadData(@SerializedName("HPPURL") val hppURL: String,
                        @SerializedName("merchantId") val merchantId: String?,
                        @SerializedName("account") val account: String?,
                        @SerializedName("amount") val amount: Int?,

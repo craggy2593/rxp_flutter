@@ -14,8 +14,6 @@ class RxpFlutter {
   static const MethodChannel _channel = const MethodChannel('rxp_flutter');
 
   static Future<RxpResult> showPaymentWindow({
-    required String hppRequestProducerURL,
-    required String hppResponseConsumerURL,
     required String hppURL,
     String? merchantId,
     String? account,
@@ -25,8 +23,6 @@ class RxpFlutter {
     Map<String, String>? supplementaryData,
   }) async {
     final payload = {
-      'HPPRequestProducerURL': hppRequestProducerURL,
-      'HPPResponseConsumerURL': hppResponseConsumerURL,
       'HPPURL': hppURL,
       'merchantId': merchantId,
       'account': account,
