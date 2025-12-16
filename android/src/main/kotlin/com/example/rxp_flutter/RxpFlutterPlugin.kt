@@ -50,7 +50,7 @@ class RxpFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware, Plugin
         when (call.method) {
             "showPaymentWindow" -> {
                 val arguments: ArrayList<Any>? = call.arguments<ArrayList<Any>>()
-                val data = arguments.asPayloadData()
+                val data = arguments?.asPayloadData()
 
                 // validate
                 if (data == null
