@@ -13,16 +13,17 @@ class RxpResult {
 class RxpFlutter {
   static const MethodChannel _channel = const MethodChannel('rxp_flutter');
 
-  static Future<RxpResult> showPaymentWindow(
-      {String hppRequestProducerURL,
-      String hppResponseConsumerURL,
-      String hppURL,
-      String merchantId,
-      String account,
-      int amount,
-      String currency,
-      String productId,
-      Map<String, String> supplementaryData}) async {
+  static Future<RxpResult> showPaymentWindow({
+    required String hppRequestProducerURL,
+    required String hppResponseConsumerURL,
+    required String hppURL,
+    String? merchantId,
+    String? account,
+    int? amount,
+    String? currency,
+    String? productId,
+    Map<String, String>? supplementaryData,
+  }) async {
     final payload = {
       'HPPRequestProducerURL': hppRequestProducerURL,
       'HPPResponseConsumerURL': hppResponseConsumerURL,
@@ -32,13 +33,18 @@ class RxpFlutter {
       'amount': amount,
       'currency': currency,
       'supplementaryData': supplementaryData,
-      'productId': productId
+      'productId': productId,
     };
 
-    final Map<dynamic, dynamic> result =
-        await _channel.invokeMethod('showPaymentWindow', [payload]);
-    var rxpResult =
-        RxpResult(result['success'], result['result'], result['code']);
+    final Map<dynamic, dynamic> result = await _channel.invokeMethod(
+      'showPaymentWindow',
+      [payload],
+    );
+    var rxpResult = RxpResult(
+      result['success'],
+      result['result'],
+      result['code'],
+    );
     return rxpResult;
   }
 }
