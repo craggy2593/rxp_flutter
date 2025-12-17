@@ -62,10 +62,10 @@ class RxpFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware, Plugin
                 }
 
                 val intent = Intent(context, PaymentActivity::class.java)
-                // val bundle = Bundle()
-                // bundle.putString(HPPManager.HPPREQUEST_PRODUCER_URL, data.hppRequestProducerURL)
-                // bundle.putString(HPPManager.HPPRESPONSE_CONSUMER_URL, data.hppRequestConsumerURL)
-                // bundle.putString(HPPManager.HPPURL, data.hppURL)
+                val bundle = Bundle()
+                bundle.putString(HPPManager.HPPREQUEST_PRODUCER_URL, data.hppRequestProducerURL)
+                bundle.putString(HPPManager.HPPRESPONSE_CONSUMER_URL, data.hppRequestConsumerURL)
+                bundle.putString(HPPManager.HPPURL, data.hppURL)
                 // data.merchantId?.let { bundle.putString(HPPManager.MERCHANT_ID, it) }
                 // data.amount?.let { bundle.putString(HPPManager.AMOUNT, it.toString()) }
                 // data.account?.let { bundle.putString(HPPManager.ACCOUNT, it) }
