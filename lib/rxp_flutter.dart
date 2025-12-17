@@ -17,23 +17,13 @@ class RxpFlutter {
     String? hppRequestProducerURL,
     String? hppResponseConsumerURL,
     required String hppURL,
-    String? merchantId,
-    String? account,
-    int? amount,
-    String? currency,
-    String? productId,
-    Map<String, String>? supplementaryData,
+    required String hppData,
   }) async {
     final payload = {
       'HPPRequestProducerURL': hppRequestProducerURL,
       'HPPResponseConsumerURL': hppResponseConsumerURL,
       'HPPURL': hppURL,
-      'merchantId': merchantId,
-      'account': account,
-      'amount': amount,
-      'currency': currency,
-      'supplementaryData': supplementaryData,
-      'productId': productId,
+      'hppData': hppData,
     };
 
     final Map<dynamic, dynamic> result = await _channel.invokeMethod(
